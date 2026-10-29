@@ -20,3 +20,66 @@ html {
 button {
     cursor: pointer;
 }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #222;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+button {
+    cursor: pointer;
+}
+header {
+    width: 100%;
+    padding: 20px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #1976d2;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #1976d2;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1976d2;
+    color: white;
+}
