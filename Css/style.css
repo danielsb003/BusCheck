@@ -1,10 +1,14 @@
 *, *::before, *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 * {
     margin: 0;
     padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,73 +17,418 @@ body {
     color: #222;
 }
 
-html {
-    scroll-behavior: smooth;
+button,
+input {
+    font: inherit;
 }
 
 button {
     cursor: pointer;
 }
-*, *::before, *::after {
-  box-sizing: border-box;
-}
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
-    color: #222;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-button {
-    cursor: pointer;
+section {
+    scroll-margin-top: 20px;
 }
 header {
     width: 100%;
-    padding: 20px 8%;
+    min-height: 70px;
+    padding: 16px 4%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 25px;
     background-color: white;
     border-bottom: 1px solid #ddd;
+    position: relative;
+    z-index: 100;
 }
 
 .logo {
     font-size: 26px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .logo span {
     color: #1976d2;
 }
 
+
+/* Navegação no computador */
+
 nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
-    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
 }
 
 nav a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
     color: #1976d2;
 }
 
+
+/* Botão de login */
+
 .login-btn {
-    padding: 10px 20px;
+    flex-shrink: 0;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    background-color: #1976d2;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #125ca3;
+}
+
+/* Checkbox escondido */
+
+#menu-toggle {
+    display: none;
+}
+
+/* Ícone do menu escondido no computador */
+
+.menu-btn {
+    display: none;
+    width: 32px;
+    height: 26px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.menu-btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #222;
+    border-radius: 5px;
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+.hero {
+    min-height: 500px;
+    padding: 70px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.hero-text {
+    max-width: 550px;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.main-btn {
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 6px;
+    background-color: #1976d2;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.main-btn:hover {
+    background-color: #125ca3;
+}
+
+.hero-card {
+    width: 350px;
+    max-width: 100%;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.hero-card h2 {
+    margin-bottom: 20px;
+}
+
+.hero-card input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.search-btn {
+    width: 100%;
+    padding: 13px;
     border: none;
     border-radius: 6px;
     background-color: #1976d2;
     color: white;
+}
+
+.search-btn:hover {
+    background-color: #125ca3;
+}
+
+/* Footer */
+
+footer {
+    padding: 30px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #111;
+    color: white;
+}
+
+footer .logo {
+    color: white;
+}
+
+footer p {
+    color: #aaa;
+}
+
+
+/* Tablets e telemóveis */
+
+@media (max-width: 768px) {
+
+    /* Header */
+
+    header {
+        min-height: 70px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    .logo {
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    /* Botão Entrar */
+
+    .login-btn {
+        display: block;
+        margin-left: auto;
+        margin-right: 15px;
+        padding: 9px 14px;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    /* Botão do menu */
+
+    .menu-btn {
+        display: flex;
+        position: relative;
+        flex-shrink: 0;
+        width: 32px;
+        height: 26px;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .menu-btn span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: #222;
+        border-radius: 5px;
+        transform-origin: center;
+        transition:
+            transform 0.35s ease,
+            opacity 0.25s ease;
+    }
+
+    /* Menu fechado */
+
+    header nav {
+        
+        position: absolute;
+        top: 100%;
+        left: 0;
+        transform: translateY(-12px);
+
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        background-color: white;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform: translateY(-12px);
+
+        transition:
+            max-height 0.45s ease,
+            opacity 0.3s ease,
+            transform 0.35s ease,
+            visibility 0s linear 0.45s;
+    }
+
+    /* Links do menu */
+
+    header nav a {
+        display: block;
+        width: 100%;
+        padding: 16px 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+        border-bottom: 1px solid #f0f0f0;
+
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+    }
+
+    header nav a:hover {
+        background-color: #f1f5f9;
+        color: #1976d2;
+    }
+
+    /* Abrir o menu */
+
+#menu-toggle:checked ~ nav {
+    max-height: 300px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+
+    transition:
+        max-height 0.45s ease,
+        opacity 0.3s ease,
+        transform 0.35s ease,
+        visibility 0s;
+}
+
+    /* Página inicial */
+
+    .hero {
+        min-height: auto;
+        padding: 50px 20px;
+        flex-direction: column;
+        gap: 35px;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+    }
+
+    .hero-card {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    /* Outras secções */
+
+    .routes,
+    .info,
+    .about {
+        padding: 50px 20px;
+    }
+
+    .routes h2,
+    .about h2 {
+        font-size: 28px;
+    }
+
+    .route-card,
+    .info-box {
+        max-width: none;
+        flex-basis: 100%;
+    }
+
+    /* Footer */
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+/* Telemóveis muito estreitos */
+
+@media (max-width: 360px) {
+
+    header {
+        padding: 14px 12px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .login-btn {
+        margin-right: 12px;
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .menu-btn {
+        width: 28px;
+        height: 24px;
+    }
+
+    .hero-text h1 {
+        font-size: 30px;
+    }
 }
