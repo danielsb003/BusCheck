@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/style.css">
     <title>BusCheck</title>
+    <link rel="stylesheet" href="Css/style.css">
 </head>
 <body>
    <header>
+
     <div class="logo">
         Bus<span>Check</span>
     </div>
+    <button class="login-btn">Entrar</button> 
+    <input type="checkbox" id="menu-toggle">
+
+    <label for="menu-toggle" class="menu-btn"
+           aria-label="Abrir ou fechar menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 
     <nav>
         <a href="#inicio">Início</a>
@@ -19,8 +29,9 @@
         <a href="#sobre">Sobre</a>
     </nav>
 
-    <button class="login-btn">Entrar</button>
-</header> 
+    
+
+</header>
 <main>
 
     <section id="inicio" class="hero">
@@ -29,13 +40,13 @@
             <h1>Encontra o teu autocarro.</h1>
 
             <p>
-                Consulta rotas, horários e paragens de forma
-                rápida e simples.
+                Consulta rotas, horários e paragens
+                de forma rápida e simples.
             </p>
 
-            <button class="main-btn">
+            <a href="#rotas" class="main-btn">
                 Ver rotas
-            </button>
+            </a>
         </div>
 
         <div class="hero-card">
@@ -44,11 +55,21 @@
             <input type="text" placeholder="De onde vais?">
             <input type="text" placeholder="Para onde vais?">
 
-            <button class="search-btn">
-                Pesquisar
-            </button>
+            <button class="search-btn">Pesquisar</button>
         </div>
 
     </section>
+
+</main>
+
+    <footer>
+
+    <div class="logo">
+        Bus<span>Check</span>
+    </div>
+
+    <p>© 2026 BusCheck. Todos os direitos reservados.</p>
+
+</footer>
 </body>
 </html>
