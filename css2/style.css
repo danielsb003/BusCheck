@@ -34,7 +34,10 @@ section {
 /* ============================================================
    HEADER & NAVEGAÇÃO
    ============================================================ */
-header {
+/* IMPORTANTE: usar header.topbar (e não só "header").
+   O seletor "header" apanhava também o <header class="post-head"> dentro de cada post,
+   que herdava position:sticky + z-index:100 e ficava por cima do menu ao fazer scroll. */
+header.topbar {
     width: 100%;
     min-height: 70px;
     padding: 16px 4%;
@@ -438,7 +441,7 @@ main {
         margin: 0 auto;
     }
 
-    header {
+    header.topbar {
         grid-column: 1 / -1;
     }
 
@@ -470,7 +473,7 @@ main {
 }
 
 @media (max-width: 768px) {
-    header {
+    header.topbar {
         padding: 12px 20px;
     }
 
@@ -529,5 +532,108 @@ main {
         overflow: hidden;
         clip: rect(0, 0, 0, 0);
         white-space: nowrap;
+    }
+}
+
+
+/* ============================================================
+   FORMULÁRIOS (página formulario.html e login)
+   ============================================================ */
+select {
+    font: inherit;
+}
+
+.form {
+    display: grid;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+    min-width: 0; /* evita que campos largos rebentem a grelha */
+}
+
+.field label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccd3db;
+    border-radius: 8px;
+    background-color: white;
+    color: #222;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.18);
+}
+
+.field textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.field input[type="file"] {
+    padding: 9px 10px;
+    background-color: #f8fafc;
+}
+
+.hint {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Dois campos lado a lado (só quando há espaço) */
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+@media (min-width: 560px) {
+    .field-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Foto de perfil + campo de upload */
+.profile-photo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-photo .field {
+    flex-grow: 1;
+}
+
+.avatar--lg {
+    width: 72px;
+    height: 72px;
+    font-size: 24px;
+}
+
+/* Botões do fim do formulário */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+@media (max-width: 480px) {
+    .form-actions .btn {
+        flex: 1;
     }
 }
