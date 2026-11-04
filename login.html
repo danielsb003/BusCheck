@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     login.html — Página 5 · Área reservada: login e registo.
+     ============================================================ -->
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport: obrigatório para o site ser responsivo em telemóveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar · BusCheck</title>
+  <link rel="stylesheet" href="Css/style.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
+
+  <!-- TOPO: logótipo + botão Entrar (só visível no telemóvel).
+       BACKEND: se houver sessão iniciada, mostrar o avatar/nome e "Sair" em vez de "Entrar". -->
+  <header class="topbar">
+    <a href="index.html" class="logo" aria-label="BusCheck, página inicial">Bus<span>Check</span></a>
+    <a href="login.html" class="btn btn--sm">Entrar</a>
+  </header>
+
+  <!-- MENU PRINCIPAL: no telemóvel é a barra inferior; no computador é o menu lateral (só CSS).
+         aria-current="page" marca a página ativa. BACKEND: ao passar para PHP, pôr isto em includes/nav.php
+         e gerar o aria-current com basename($_SERVER['PHP_SELF']). -->
+  <nav class="nav" aria-label="Principal">
+    <a href="index.html" ><span class="ico" aria-hidden="true">🏠</span>Início</a>
+    <a href="posts.html" ><span class="ico" aria-hidden="true">🔎</span>Posts</a>
+    <a href="formulario.html" ><span class="ico" aria-hidden="true">➕</span>Publicar</a>
+    <a href="perfil.html" ><span class="ico" aria-hidden="true">👤</span>Perfil</a>
+    <a href="login.html" class="nav-desk" aria-current="page"><span class="ico" aria-hidden="true">🔑</span>Entrar</a>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL (um único <main> por página) -->
+  <main id="conteudo">
+
+    <section class="card" aria-labelledby="t-login">
+      <h1 id="t-login">Entrar</h1>
+      <!-- BACKEND: php/login.php → procurar o email, password_verify() contra o hash, session_regenerate_id(), $_SESSION['user_id'].
+           Mostrar erros (ex.: "Email ou palavra-passe incorretos") acima do formulário. -->
+      <form class="form" method="post" action="php/login.php" style="margin-top:.8rem">
+        <div class="field"><label for="l-email">Email</label><input id="l-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="l-pass">Palavra-passe</label><input id="l-pass" name="password" type="password" autocomplete="current-password" required></div>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="t-reg">
+      <h2 id="t-reg">Ainda não tens conta?</h2>
+      <p class="muted">Regista-te para publicar e comentar.</p>
+      <!-- BACKEND: php/registo.php → validar, email único, password_hash($pw, PASSWORD_DEFAULT). NUNCA guardar a palavra-passe em texto. -->
+      <form class="form" method="post" action="php/registo.php" enctype="multipart/form-data" style="margin-top:.8rem">
+        <div class="field"><label for="r-nome">Nome</label><input id="r-nome" name="nome" autocomplete="name" required></div>
+        <div class="field"><label for="r-email">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="r-pass">Palavra-passe (mín. 8 caracteres)</label><input id="r-pass" name="password" type="password" minlength="8" autocomplete="new-password" required></div>
+        <div class="field"><label for="r-foto">Foto de perfil (opcional)</label><input id="r-foto" name="foto" type="file" accept="image/*"></div>
+        <button class="btn btn--ghost" type="submit">Criar conta</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- BARRA LATERAL (só ≥1100px). BACKEND: SELECT linha, COUNT(*) FROM posts WHERE data >= NOW() - INTERVAL 7 DAY GROUP BY linha ORDER BY 2 DESC LIMIT 5 -->
+  <aside class="aside" aria-label="Linhas com mais ocorrências">
+    <section class="card">
+      <h2>Mais ocorrências esta semana</h2>
+      <ul class="aside-list">
+        <li><a href="posts.html?linha=301" class="line">301</a><span class="muted">12 posts</span></li>
+        <li><a href="posts.html?linha=502" class="line">502</a><span class="muted">9 posts</span></li>
+        <li><a href="posts.html?linha=801" class="line">801</a><span class="muted">4 posts</span></li>
+      </ul>
+    </section>
+    <p class="muted">© 2026 BusCheck · Feito por passageiros, para passageiros.</p>
+  </aside>
+</body>
+</html>

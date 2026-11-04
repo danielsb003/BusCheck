@@ -1,0 +1,479 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #222;
+    line-height: 1.5;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+section {
+    scroll-margin-top: 20px;
+}
+
+/* ============================================================
+   HEADER & NAVEGAÇÃO
+   ============================================================ */
+header {
+    width: 100%;
+    min-height: 70px;
+    padding: 16px 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-decoration: none;
+    color: #222;
+}
+
+.logo span {
+    color: #1976d2;
+}
+
+/* Navegação principal / Computador */
+nav.nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+nav.nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+nav.nav a:hover,
+nav.nav a[aria-current="page"] {
+    color: #1976d2;
+}
+
+/* Ocultar link de entrar no desktop se já estiver no header ou vice-versa, conforme a estrutura */
+.nav-desk {
+    display: flex;
+}
+
+/* ============================================================
+   BOTÕES E COMPONENTES GERAIS
+   ============================================================ */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1976d2;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #125ca3;
+}
+
+.btn--sm {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.btn--ghost {
+    background-color: transparent;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+}
+
+.btn--ghost:hover {
+    background-color: #f0f7ff;
+}
+
+.btn--danger {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.btn--danger:hover {
+    background-color: #9a0007;
+}
+
+.btn--block {
+    display: block;
+    width: 100%;
+}
+
+.skip {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    z-index: 999;
+}
+
+.muted {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* ============================================================
+   ESTRUTURA PRINCIPAL & CARDS
+   ============================================================ */
+main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e1e4e8;
+}
+
+.card h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* ============================================================
+   FILA DE LINHAS (RAIL / STORIES)
+   ============================================================ */
+.rail {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.rail::-webkit-scrollbar {
+    height: 4px;
+}
+
+.rail::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.rail a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    font-size: 14px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.rail a:hover {
+    border-color: #1976d2;
+    background-color: #f8fbff;
+}
+
+/* ============================================================
+   POSTS E FEED
+   ============================================================ */
+.feed h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.post-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #1976d2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.who {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.who a {
+    text-decoration: none;
+    color: #222;
+    font-weight: bold;
+}
+
+.who a:hover {
+    color: #1976d2;
+}
+
+.line {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.post h3 {
+    font-size: 18px;
+    color: #111;
+}
+
+.post p {
+    color: #444;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* Tags de estado */
+.tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tag--atraso {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.tag--avaria {
+    background-color: #fff8e1;
+    color: #f57f17;
+}
+
+.tag--info {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* ============================================================
+   COMENTÁRIOS
+   ============================================================ */
+.comments {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    margin-top: 10px;
+}
+
+.comments summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+}
+
+.comment {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    align-items: flex-start;
+}
+
+.comment .avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+}
+
+.bubble {
+    background-color: #f1f3f5;
+    padding: 8px 12px;
+    border-radius: 8px;
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+.comment-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.comment-form textarea {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: none;
+    height: 38px;
+}
+
+/* ============================================================
+   BARRA LATERAL (ASIDE)
+   ============================================================ */
+.aside {
+    display: none; /* Aparece apenas em ecrãs grandes */
+}
+
+/* ============================================================
+   MEDIA QUERIES (RESPONSIVO)
+   ============================================================ */
+@media (min-width: 1100px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr 350px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    header, nav.nav {
+        grid-column: 1 / -1;
+    }
+
+    main {
+        margin: 30px 0 30px 30px;
+        max-width: none;
+    }
+
+    .aside {
+        display: block;
+        margin: 30px 30px 30px 0;
+    }
+
+    .aside-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .aside-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 12px 20px;
+    }
+
+    nav.nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #ddd;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 1000;
+        gap: 0;
+    }
+
+    nav.nav a {
+        flex-direction: column;
+        font-size: 11px;
+        gap: 2px;
+    }
+
+    nav.nav .ico {
+        font-size: 18px;
+    }
+
+    .nav-desk {
+        display: none;
+    }
+
+    main {
+        margin-bottom: 70px; /* Espaço para a barra inferior no telemóvel */
+        padding: 0 10px;
+    }
+}   
