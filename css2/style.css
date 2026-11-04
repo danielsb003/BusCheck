@@ -44,7 +44,8 @@ header {
     gap: 25px;
     background-color: white;
     border-bottom: 1px solid #ddd;
-    position: relative;
+    position: sticky; /* fica visível ao fazer scroll e serve de referência ao nav centrado */
+    top: 0;
     z-index: 100;
 }
 
@@ -60,7 +61,8 @@ header {
     color: #1976d2;
 }
 
-/* Navegação principal / Computador */
+/* Navegação principal / Computador
+   Está centrada no header (o header é position:sticky, logo é a referência do absolute). */
 nav.nav {
     position: absolute;
     left: 50%;
@@ -77,8 +79,36 @@ nav.nav a {
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: color 0.2s ease;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+nav.nav a:hover {
+    background-color: #f0f7ff;
+}
+
+nav.nav a[aria-current="page"] {
+    background-color: #e3f2fd;
+}
+
+/* ÍCONES (SVG do sprite): traço desenhado com a cor do texto */
+.ico {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ico--sm {
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
 }
 
 nav.nav a:hover,
@@ -408,7 +438,7 @@ main {
         margin: 0 auto;
     }
 
-    header, nav.nav {
+    header {
         grid-column: 1 / -1;
     }
 
@@ -462,10 +492,17 @@ main {
         flex-direction: column;
         font-size: 11px;
         gap: 2px;
+        padding: 4px 12px;
+        border-radius: 8px;
+    }
+
+    nav.nav a[aria-current="page"] {
+        background-color: transparent; /* na barra inferior só muda a cor */
     }
 
     nav.nav .ico {
-        font-size: 18px;
+        width: 24px;
+        height: 24px;
     }
 
     .nav-desk {
@@ -476,4 +513,21 @@ main {
         margin-bottom: 70px; /* Espaço para a barra inferior no telemóvel */
         padding: 0 10px;
     }
-}   
+}
+
+/* Ecrãs médios: só ícones, para o menu centrado caber ao lado do logótipo */
+@media (min-width: 769px) and (max-width: 900px) {
+    nav.nav {
+        gap: 6px;
+    }
+
+    /* esconde o texto só visualmente (os leitores de ecrã continuam a lê-lo) */
+    nav.nav a span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+}

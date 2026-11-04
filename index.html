@@ -11,26 +11,37 @@
   <link rel="stylesheet" href="css2/style.css">
 </head>
 <body>
+  <!-- ÍCONES: sprite SVG (traço simples, herdam a cor do texto via currentColor).
+       Para usar um ícone: <svg class="ico"><use href="#i-home"/></svg>
+       BACKEND: colocar este bloco em includes/icones.php e incluí-lo em todas as páginas. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></symbol>
+  </svg>
   <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
 
-  <!-- TOPO: logótipo + botão Entrar (só visível no telemóvel).
-       BACKEND: se houver sessão iniciada, mostrar o avatar/nome e "Sair" em vez de "Entrar". -->
+  <!-- CABEÇALHO: logótipo | menu | botão Entrar.
+       O <nav> está DENTRO do <header> de propósito:
+         · computador  -> fica centrado no cabeçalho (position:absolute em relação ao header)
+         · telemóvel   -> o CSS transforma-o numa barra fixa em baixo (position:fixed)
+       BACKEND: se houver sessão iniciada, mostrar avatar/nome e "Sair" em vez de "Entrar". -->
   <header class="topbar">
     <a href="index.html" class="logo" aria-label="BusCheck, página inicial">Bus<span>Check</span></a>
+
+    <!-- MENU PRINCIPAL. aria-current="page" marca a página ativa.
+         BACKEND: pôr em includes/nav.php e gerar o aria-current com basename($_SERVER['PHP_SELF']). -->
+    <nav class="nav" aria-label="Principal">
+      <a href="index.html" aria-current="page"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg><span>Início</span></a>
+      <a href="posts.html"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span>Posts</span></a>
+      <a href="formulario.html"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg><span>Publicar</span></a>
+      <a href="perfil.html"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg><span>Perfil</span></a>
+    </nav>
+
     <a href="login.html" class="btn btn--sm">Entrar</a>
   </header>
-  
-
-  <!-- MENU PRINCIPAL: no telemóvel é a barra inferior; no computador é o menu lateral (só CSS).
-         aria-current="page" marca a página ativa. BACKEND: ao passar para PHP, pôr isto em includes/nav.php
-         e gerar o aria-current com basename($_SERVER['PHP_SELF']). -->
-  <nav class="nav" aria-label="Principal">
-    <a href="index.html" aria-current="page"><span class="ico" aria-hidden="true">🏠</span>Início</a>
-    <a href="posts.html" ><span class="ico" aria-hidden="true">🔎</span>Posts</a>
-    <a href="formulario.html" ><span class="ico" aria-hidden="true">➕</span>Publicar</a>
-    <a href="perfil.html" ><span class="ico" aria-hidden="true">👤</span>Perfil</a>
-    <a href="login.html" class="nav-desk" ><span class="ico" aria-hidden="true">🔑</span>Entrar</a>
-  </nav>
 
   <!-- CONTEÚDO PRINCIPAL (um único <main> por página) -->
   <main id="conteudo">
@@ -68,7 +79,7 @@
       <div class="post-actions"><span class="tag tag--atraso">Atraso</span></div>
       <!-- COMENTÁRIOS: <details> abre e fecha sem JavaScript -->
       <details class="comments" open>
-        <summary>💬 1 comentário</summary>
+        <summary><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg> 1 comentário</summary>
         <div class="comment">
           <span class="avatar" aria-hidden="true">RM</span>
           <div class="bubble"><strong>Rui Matos</strong> <span class="muted"><time datetime="2026-11-03T08:50">3 nov, 08:50</time></span><p>Confirmo, aconteceu-me ontem à mesma hora.</p></div>
@@ -105,7 +116,7 @@
         </form></div>
       <!-- COMENTÁRIOS: <details> abre e fecha sem JavaScript -->
       <details class="comments">
-        <summary>💬 0 comentários</summary>
+        <summary><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg> 0 comentários</summary>
         <!-- Formulário de comentário. BACKEND: só para utilizadores com sessão; senão mostrar link para login -->
         <form class="comment-form" method="post" action="php/criar_comentario.php">
           <input type="hidden" name="post_id" value="102">
@@ -131,7 +142,7 @@
       <div class="post-actions"><span class="tag tag--info">Informação</span></div>
       <!-- COMENTÁRIOS: <details> abre e fecha sem JavaScript -->
       <details class="comments">
-        <summary>💬 2 comentários</summary>
+        <summary><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg> 2 comentários</summary>
         <div class="comment">
           <span class="avatar" aria-hidden="true">AR</span>
           <div class="bubble"><strong>Ana Ribeiro</strong> <span class="muted"><time datetime="2026-11-02T19:02">2 nov, 19:02</time></span><p>Obrigada pelo aviso!</p></div>
