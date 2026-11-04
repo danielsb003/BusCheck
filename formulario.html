@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- ============================================================
+     formulario.html — Página 4 · Formulário: criar/editar post e editar perfil.
+     ============================================================ -->
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport: obrigatório para o site ser responsivo em telemóveis -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar · BusCheck</title>
+  <link rel="stylesheet" href="css2/style.css">
+</head>
+<body>
+  <!-- ÍCONES: sprite SVG (traço simples, herdam a cor do texto via currentColor).
+       Para usar um ícone: <svg class="ico"><use href="#i-home"/></svg>
+       BACKEND: colocar este bloco em includes/icones.php e incluí-lo em todas as páginas. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></symbol>
+  </svg>
+  <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
+
+  <!-- CABEÇALHO: logótipo | menu | botão Entrar.
+       O <nav> está DENTRO do <header> de propósito:
+         · computador  -> fica centrado no cabeçalho (position:absolute em relação ao header)
+         · telemóvel   -> o CSS transforma-o numa barra fixa em baixo (position:fixed)
+       BACKEND: se houver sessão iniciada, mostrar avatar/nome e "Sair" em vez de "Entrar". -->
+  <header class="topbar">
+    <a href="index.html" class="logo" aria-label="BusCheck, página inicial">Bus<span>Check</span></a>
+
+    <!-- MENU PRINCIPAL. aria-current="page" marca a página ativa.
+         BACKEND: pôr em includes/nav.php e gerar o aria-current com basename($_SERVER['PHP_SELF']). -->
+    <nav class="nav" aria-label="Principal">
+      <a href="index.html"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg><span>Início</span></a>
+      <a href="posts.html"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span>Posts</span></a>
+      <a href="formulario.html" aria-current="page"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg><span>Publicar</span></a>
+      <a href="perfil.html"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg><span>Perfil</span></a>
+    </nav>
+
+    <a href="login.html" class="btn btn--sm">Entrar</a>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL (um único <main> por página) -->
+  <main id="conteudo">
+
+    <!-- ===== CRIAR / EDITAR POST ===== -->
+    <section class="card" aria-labelledby="t-post">
+      <h1 id="t-post">Novo post</h1>
+      <p class="muted">Conta aos outros passageiros o que se passa na tua linha.</p>
+
+      <!-- BACKEND: action="php/guardar_post.php". Os atributos name= coincidem com as colunas da tabela posts.
+           MODO EDITAR (formulario.php?editar=ID): ler o post, preencher os value=/selected e o campo post_id.
+           O servidor tem de confirmar que o post pertence a $_SESSION['user_id'].
+           O autor e a data NÃO vêm do formulário: user_id vem da sessão e a data é NOW() no servidor. -->
+      <form class="form" method="post" action="php/guardar_post.php">
+        <!-- Vazio = criar; com id = editar -->
+        <input type="hidden" name="post_id" value="">
+        <!-- BACKEND: <input type="hidden" name="csrf" value="<?= $token ?>"> -->
+
+        <div class="field">
+          <label for="titulo">Título</label>
+          <input id="titulo" name="titulo" maxlength="100" placeholder="Ex.: 301 atrasado na Trindade" required>
+        </div>
+
+        <!-- Linha e tipo lado a lado no computador, empilhados no telemóvel -->
+        <div class="field-row">
+          <div class="field">
+            <label for="linha">Linha de autocarro</label>
+            <select id="linha" name="linha" required>
+              <option value="">Escolhe a linha</option>
+              <option value="301">301</option><option value="502">502</option><option value="801">801</option><option value="205">205</option><option value="903">903</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="tipo">Tipo de ocorrência</label>
+            <select id="tipo" name="tipo" required>
+              <option value="atraso">Atraso</option>
+              <option value="avaria">Avaria</option>
+              <option value="info">Informação</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="conteudo">O que aconteceu?</label>
+          <textarea id="conteudo" name="conteudo" maxlength="500" placeholder="Descreve a ocorrência: onde, a que horas, quanto tempo…" required></textarea>
+          <span class="hint">Máximo 500 caracteres.</span>
+        </div>
+
+        <div class="form-actions">
+          <a class="btn btn--ghost" href="posts.html">Cancelar</a>
+          <button class="btn" type="submit">Publicar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===== EDITAR PERFIL ===== -->
+    <section class="card" aria-labelledby="t-perfil">
+      <h2 id="t-perfil">Editar perfil</h2>
+
+      <!-- enctype="multipart/form-data" é obrigatório para enviar a foto.
+           BACKEND: guardar_perfil.php valida tipo/tamanho da imagem, email único e, se vier nova_password,
+           guarda password_hash(). Preencher os value= com os dados do utilizador com sessão. -->
+      <form class="form" method="post" action="php/guardar_perfil.php" enctype="multipart/form-data">
+        <div class="profile-photo">
+          <!-- AVATAR: BACKEND trocar por <img class="avatar avatar--lg" src="uploads/avatars/..." alt="A tua foto atual"> -->
+          <span class="avatar avatar--lg" aria-hidden="true">RM</span>
+          <div class="field">
+            <label for="foto">Foto de perfil</label>
+            <input id="foto" name="foto" type="file" accept="image/*">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" value="Rui Matos" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" value="rui@exemplo.pt" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="nova-pass">Nova palavra-passe <span class="muted">(opcional)</span></label>
+          <input id="nova-pass" name="nova_password" type="password" minlength="8" autocomplete="new-password">
+          <span class="hint">Deixa em branco para manter a atual. Mínimo 8 caracteres.</span>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn" type="submit">Guardar alterações</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- BARRA LATERAL (só ≥1100px). BACKEND: SELECT linha, COUNT(*) FROM posts WHERE data >= NOW() - INTERVAL 7 DAY GROUP BY linha ORDER BY 2 DESC LIMIT 5 -->
+  <aside class="aside" aria-label="Linhas com mais ocorrências">
+    <section class="card">
+      <h2>Mais ocorrências esta semana</h2>
+      <ul class="aside-list">
+        <li><a href="posts.html?linha=301" class="line">301</a><span class="muted">12 posts</span></li>
+        <li><a href="posts.html?linha=502" class="line">502</a><span class="muted">9 posts</span></li>
+        <li><a href="posts.html?linha=801" class="line">801</a><span class="muted">4 posts</span></li>
+      </ul>
+    </section>
+    <p class="muted">© 2026 BusCheck · Feito por passageiros, para passageiros.</p>
+  </aside>
+</body>
+</html>
