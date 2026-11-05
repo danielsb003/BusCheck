@@ -1,0 +1,113 @@
+/* ==========================================================================
+   BusCheck · Css/style.css
+   Navbar responsiva (Mobile-First não é usado aqui: o desktop é o padrão e
+   o @media (max-width: 768px) adapta para telemóvel).
+   Índice: 1. Reset  2. Navbar (computador)  3. Ícones  4. Botões
+           5. Utilitários  6. Navbar (telemóvel)  7. Ecrãs médios
+   ========================================================================== */
+
+/* 1. RESET E BASE */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: Arial, sans-serif; background-color: #f5f7fa; color: #222; line-height: 1.5; }
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+
+/* 2. NAVBAR NO COMPUTADOR
+   IMPORTANTE: usar "header.topbar" e não só "header". Assim os estilos não afetam
+   outros <header> do site (ex.: o cabeçalho de cada post). */
+header.topbar {
+    position: sticky;            /* fica no topo ao fazer scroll; também é a referência do nav centrado */
+    top: 0;
+    z-index: 100;                /* por cima do conteúdo */
+    width: 100%;
+    min-height: 70px;
+    padding: 16px 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* logo à esquerda, botão à direita */
+    gap: 25px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo { font-size: 26px; font-weight: bold; white-space: nowrap; text-decoration: none; color: #222; }
+.logo span { color: #1976d2; }
+
+/* O menu fica centrado no cabeçalho, independentemente da largura do logo e do botão */
+nav.nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+nav.nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;                    /* espaço entre ícone e texto */
+    padding: 8px 14px;
+    border-radius: 999px;        /* forma de "pílula" */
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color .2s ease, background-color .2s ease;
+}
+nav.nav a:hover { background-color: #f0f7ff; color: #1976d2; }
+nav.nav a[aria-current="page"] { background-color: #e3f2fd; color: #1976d2; }   /* página ativa */
+
+/* 3. ÍCONES (imagens da pasta img/) */
+.ico { width: 20px; height: 20px; }
+
+/* 4. BOTÕES */
+.btn {
+    display: inline-block; padding: 10px 18px; border: none; border-radius: 6px;
+    background-color: #1976d2; color: white; text-decoration: none; font-weight: 500; text-align: center;
+    transition: background-color .2s ease;
+}
+.btn:hover { background-color: #125ca3; }
+.btn--sm { padding: 6px 14px; font-size: 14px; }
+
+/* 5. UTILITÁRIOS */
+.muted { color: #666; font-size: .9rem; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 10px; top: 10px; z-index: 999; padding: 10px; background: #000; color: #fff; }
+:focus-visible { outline: 3px solid #1976d2; outline-offset: 2px; }
+
+/* Conteúdo de exemplo (cartão) */
+main { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+.card { background: white; border: 1px solid #e1e4e8; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+.card h1 { font-size: 24px; margin-bottom: 8px; }
+
+/* 6. NAVBAR NO TELEMÓVEL (≤768px): barra fixa em baixo, ícone por cima do texto */
+@media (max-width: 768px) {
+    header.topbar { padding: 12px 20px; }
+
+    nav.nav {
+        position: fixed;
+        bottom: 0; left: 0;
+        transform: none;                 /* anula o centrado do computador */
+        width: 100%;
+        justify-content: space-around;
+        gap: 0;
+        padding: 8px 0;
+        background-color: white;
+        border-top: 1px solid #ddd;
+        z-index: 1000;
+    }
+    nav.nav a { flex-direction: column; gap: 2px; padding: 4px 12px; border-radius: 8px; font-size: 11px; }
+    nav.nav a[aria-current="page"] { background-color: transparent; }   /* na barra inferior só muda a cor */
+    nav.nav .ico { width: 24px; height: 24px; }
+
+    main { margin-bottom: 80px; padding: 0 12px; }   /* espaço para a barra não tapar o conteúdo */
+}
+
+/* 7. ECRÃS MÉDIOS (769–900px): só ícones, para o menu caber ao lado do logo */
+@media (min-width: 769px) and (max-width: 900px) {
+    nav.nav { gap: 6px; }
+    /* esconde o texto só visualmente (leitores de ecrã continuam a lê-lo) */
+    nav.nav a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+}

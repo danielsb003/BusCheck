@@ -1,180 +1,50 @@
 <!DOCTYPE html>
-<!-- ============================================================
-     index.html — Página 1 · Início: destaques, atalhos por linha e posts recentes.
-     ============================================================ -->
+<!-- index.html — BusCheck · Página inicial com a barra de navegação. -->
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <!-- Viewport: obrigatório para o site ser responsivo em telemóveis -->
+  <!-- Viewport: obrigatório para a resposividade do site -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Início · BusCheck</title>
-  <link rel="stylesheet" href="css2/style.css">
+  <!-- Ligação ao CSS -->
+  <link rel="stylesheet" href="Css/style.css">
 </head>
 <body>
-  <!-- ÍCONES: sprite SVG (traço simples, herdam a cor do texto via currentColor).
-       Para usar um ícone: <svg class="ico"><use href="#i-home"/></svg>
-       BACKEND: colocar este bloco em includes/icones.php e incluí-lo em todas as páginas. -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
-    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
-    <symbol id="i-plus" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></symbol>
-    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></symbol>
-  </svg>
+
+  <!--"(acessibilidade: útil para quem navega com teclado) -->
   <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
 
-  <!-- CABEÇALHO: logótipo | menu | botão Entrar.
+  <!-- NavBar: Esta dividido em três partes: logótipo | menu | botão de conta.
        O <nav> está DENTRO do <header> de propósito:
-         · computador  -> fica centrado no cabeçalho (position:absolute em relação ao header)
-         · telemóvel   -> o CSS transforma-o numa barra fixa em baixo (position:fixed)
-       BACKEND: se houver sessão iniciada, mostrar avatar/nome e "Sair" em vez de "Entrar". -->
+         |computador - centrado no cabeçalho
+         |telemóvel  - o CSS transforma-o numa barra fixa em baixo -->
   <header class="topbar">
+
+    <!-- Logótipo: link para a página inicial -->
     <a href="index.html" class="logo" aria-label="BusCheck, página inicial">Bus<span>Check</span></a>
 
-    <!-- MENU PRINCIPAL. aria-current="page" marca a página ativa.
-         BACKEND: pôr em includes/nav.php e gerar o aria-current com basename($_SERVER['PHP_SELF']). -->
+    <!-- Menu Principal: aria-current="page" marca a página em que estamos a navegar (o CSS pinta-a de azul).
+         quando criarem outras páginas, movam este atributo para o link correspondente. -->
+
+    <!-- Ícones: Sao os ficheiros dentro da pasta ficheiros .svg na pasta img/ -->
     <nav class="nav" aria-label="Principal">
-      <a href="index.html" aria-current="page"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg><span>Início</span></a>
-      <a href="posts.html"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span>Posts</span></a>
-      <a href="formulario.html"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg><span>Publicar</span></a>
-      <a href="perfil.html"><svg class="ico" aria-hidden="true"><use href="#i-user"/></svg><span>Perfil</span></a>
+      <a href="index.html" aria-current="page">
+        <img class="ico" src="img/home.svg" alt=""><span>Início</span>
+      </a>
+      <a href="posts.html">
+        <img class="ico" src="img/search.svg" alt=""><span>Posts</span>
+      </a>
+      <a href="formulario.html">
+        <img class="ico" src="img/plus.svg" alt=""><span>Publicar</span>
+      </a>
+      <a href="perfil.html">
+        <img class="ico" src="img/user.svg" alt=""><span>Perfil</span>
+      </a>
     </nav>
 
+    <!-- Botao de login -->
     <a href="login.html" class="btn btn--sm">Entrar</a>
+
   </header>
-
-  <!-- CONTEÚDO PRINCIPAL (um único <main> por página) -->
-  <main id="conteudo">
-
-    <section class="card" aria-labelledby="titulo-inicio">
-      <h1 id="titulo-inicio">O que se passa na tua linha?</h1>
-      <p class="muted">Partilha e consulta opiniões sobre atrasos, avarias e outras ocorrências nos autocarros.</p>
-      <p style="margin-top:.8rem"><a class="btn" href="formulario.html">Publicar um post</a></p>
-    </section>
-    <!-- FILA DE LINHAS ("stories"): atalho para filtrar posts por linha. BACKEND: gerar a partir da tabela linhas -->
-    <nav class="rail" aria-label="Filtrar por linha">
-      <a href="posts.html?linha=301"><span class="line">301</span>Porto–Gaia</a>
-      <a href="posts.html?linha=502"><span class="line">502</span>Matosinhos</a>
-      <a href="posts.html?linha=801"><span class="line">801</span>Gaia–Porto</a>
-      <a href="posts.html?linha=205"><span class="line">205</span>Maia</a>
-      <a href="posts.html?linha=903"><span class="line">903</span>Gondomar</a>
-    </nav>
-    <section aria-labelledby="recentes" class="feed">
-      <h2 id="recentes">Posts recentes</h2>
-      <!-- BACKEND: SELECT p.*, u.nome, u.foto FROM posts p JOIN utilizadores u ON u.id=p.user_id ORDER BY p.data DESC LIMIT 10 -->
-
-    <!-- POST · data-post-id serve de ligação ao id da tabela posts -->
-    <article class="card post" data-post-id="101">
-      <header class="post-head">
-        <!-- AVATAR: BACKEND trocar por <img class="avatar" src="uploads/avatars/..." alt="Foto de Ana Ribeiro"> -->
-        <span class="avatar" aria-hidden="true">AR</span>
-        <div class="who">
-          <a href="perfil.html?id=1">Ana Ribeiro</a>
-          <span class="muted"><time datetime="2026-11-03T08:42">3 nov 2026, 08:42</time></span>
-        </div>
-        <a href="posts.html?linha=301" class="line" title="Ver posts da linha 301">301</a>
-      </header>
-      <h3>301 com 15 minutos de atraso na Trindade</h3>
-      <p>Esperei 15 minutos na paragem esta manhã e o painel não mostrava qualquer aviso. Quem apanha a seguir ao das 8h30 deve contar com atraso.</p>
-      <div class="post-actions"><span class="tag tag--atraso">Atraso</span></div>
-      <!-- COMENTÁRIOS: <details> abre e fecha sem JavaScript -->
-      <details class="comments" open>
-        <summary><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg> 1 comentário</summary>
-        <div class="comment">
-          <span class="avatar" aria-hidden="true">RM</span>
-          <div class="bubble"><strong>Rui Matos</strong> <span class="muted"><time datetime="2026-11-03T08:50">3 nov, 08:50</time></span><p>Confirmo, aconteceu-me ontem à mesma hora.</p></div>
-        </div>
-        <!-- Formulário de comentário. BACKEND: só para utilizadores com sessão; senão mostrar link para login -->
-        <form class="comment-form" method="post" action="php/criar_comentario.php">
-          <input type="hidden" name="post_id" value="101">
-          <label class="sr-only" for="c101">Escreve um comentário</label>
-          <textarea id="c101" name="conteudo" rows="1" maxlength="300" placeholder="Escreve um comentário…" required></textarea>
-          <button class="btn btn--sm" type="submit">Comentar</button>
-        </form>
-      </details>
-    </article>
-    <!-- POST · data-post-id serve de ligação ao id da tabela posts -->
-    <article class="card post" data-post-id="102">
-      <header class="post-head">
-        <!-- AVATAR: BACKEND trocar por <img class="avatar" src="uploads/avatars/..." alt="Foto de Rui Matos"> -->
-        <span class="avatar" aria-hidden="true">RM</span>
-        <div class="who">
-          <a href="perfil.html?id=2">Rui Matos</a>
-          <span class="muted"><time datetime="2026-11-03T07:15">3 nov 2026, 07:15</time></span>
-        </div>
-        <a href="posts.html?linha=502" class="line" title="Ver posts da linha 502">502</a>
-      </header>
-      <h3>502 avariado junto ao Mercado de Matosinhos</h3>
-      <p>O autocarro parou e pediram para sairmos. O seguinte demorou cerca de 10 minutos a chegar.</p>
-      <div class="post-actions"><span class="tag tag--avaria">Avaria</span>
-        <!-- BACKEND: mostrar Editar/Eliminar APENAS se $_SESSION['user_id'] == post.user_id (validar também no servidor!) -->
-        <a class="btn btn--ghost btn--sm" href="formulario.html?editar=102">Editar</a>
-        <form method="post" action="php/eliminar_post.php" onsubmit="return confirm('Eliminar este post?')">
-          <input type="hidden" name="post_id" value="102">
-          <!-- BACKEND: <input type="hidden" name="csrf" value="..."> -->
-          <button class="btn btn--danger btn--sm" type="submit">Eliminar</button>
-        </form></div>
-      <!-- COMENTÁRIOS: <details> abre e fecha sem JavaScript -->
-      <details class="comments">
-        <summary><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg> 0 comentários</summary>
-        <!-- Formulário de comentário. BACKEND: só para utilizadores com sessão; senão mostrar link para login -->
-        <form class="comment-form" method="post" action="php/criar_comentario.php">
-          <input type="hidden" name="post_id" value="102">
-          <label class="sr-only" for="c102">Escreve um comentário</label>
-          <textarea id="c102" name="conteudo" rows="1" maxlength="300" placeholder="Escreve um comentário…" required></textarea>
-          <button class="btn btn--sm" type="submit">Comentar</button>
-        </form>
-      </details>
-    </article>
-    <!-- POST · data-post-id serve de ligação ao id da tabela posts -->
-    <article class="card post" data-post-id="103">
-      <header class="post-head">
-        <!-- AVATAR: BACKEND trocar por <img class="avatar" src="uploads/avatars/..." alt="Foto de Inês Costa"> -->
-        <span class="avatar" aria-hidden="true">IC</span>
-        <div class="who">
-          <a href="perfil.html?id=3">Inês Costa</a>
-          <span class="muted"><time datetime="2026-11-02T18:30">2 nov 2026, 18:30</time></span>
-        </div>
-        <a href="posts.html?linha=801" class="line" title="Ver posts da linha 801">801</a>
-      </header>
-      <h3>801 com desvio por obras na Ponte da Arrábida</h3>
-      <p>Desde ontem o 801 segue por outro caminho e não passa na paragem habitual. Há aviso afixado nas paragens.</p>
-      <div class="post-actions"><span class="tag tag--info">Informação</span></div>
-      <!-- COMENTÁRIOS: <details> abre e fecha sem JavaScript -->
-      <details class="comments">
-        <summary><svg class="ico ico--sm" aria-hidden="true"><use href="#i-chat"/></svg> 2 comentários</summary>
-        <div class="comment">
-          <span class="avatar" aria-hidden="true">AR</span>
-          <div class="bubble"><strong>Ana Ribeiro</strong> <span class="muted"><time datetime="2026-11-02T19:02">2 nov, 19:02</time></span><p>Obrigada pelo aviso!</p></div>
-        </div>
-        <div class="comment">
-          <span class="avatar" aria-hidden="true">JP</span>
-          <div class="bubble"><strong>João Pinto</strong> <span class="muted"><time datetime="2026-11-02T19:20">2 nov, 19:20</time></span><p>Sabem até quando dura?</p></div>
-        </div>
-        <!-- Formulário de comentário. BACKEND: só para utilizadores com sessão; senão mostrar link para login -->
-        <form class="comment-form" method="post" action="php/criar_comentario.php">
-          <input type="hidden" name="post_id" value="103">
-          <label class="sr-only" for="c103">Escreve um comentário</label>
-          <textarea id="c103" name="conteudo" rows="1" maxlength="300" placeholder="Escreve um comentário…" required></textarea>
-          <button class="btn btn--sm" type="submit">Comentar</button>
-        </form>
-      </details>
-    </article>
-      <a class="btn btn--ghost btn--block" href="posts.html">Ver todos os posts</a>
-    </section>
-  </main>
-
-  <!-- BARRA LATERAL (só ≥1100px). BACKEND: SELECT linha, COUNT(*) FROM posts WHERE data >= NOW() - INTERVAL 7 DAY GROUP BY linha ORDER BY 2 DESC LIMIT 5 -->
-  <aside class="aside" aria-label="Linhas com mais ocorrências">
-    <section class="card">
-      <h2>Mais ocorrências esta semana</h2>
-      <ul class="aside-list">
-        <li><a href="posts.html?linha=301" class="line">301</a><span class="muted">12 posts</span></li>
-        <li><a href="posts.html?linha=502" class="line">502</a><span class="muted">9 posts</span></li>
-        <li><a href="posts.html?linha=801" class="line">801</a><span class="muted">4 posts</span></li>
-      </ul>
-    </section>
-    <p class="muted">© 2026 BusCheck · Feito por passageiros, para passageiros.</p>
-  </aside>
 </body>
 </html>
