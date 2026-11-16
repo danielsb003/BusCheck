@@ -111,3 +111,22 @@ main { max-width: 800px; margin: 30px auto; padding: 0 20px; }
     /* esconde o texto só visualmente (leitores de ecrã continuam a lê-lo) */
     nav.nav a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 }
+/* 8. RODAPÉ */
+footer.footer {
+    width: 100%;
+    margin-top: 48px;
+    padding: 24px 4%;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 4px; }
+.footer-brand .logo { font-size: 20px; }
+.footer-brand p { font-size: 13px; color: #666; }
