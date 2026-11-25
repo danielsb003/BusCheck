@@ -6,4 +6,5 @@ body {
 
 .container {
     background: gray;
+    border-radius: 10px;
 }
