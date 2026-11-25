@@ -1,4 +1,5 @@
 body {
+    background: rgb(211, 201, 201);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,7 +7,7 @@ body {
 }
 
 .container {
-    background: gray;
+    background: white;
     border-radius: 10px;
     width: 350px;
     height: 300px;
