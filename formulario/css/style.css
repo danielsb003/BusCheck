@@ -32,4 +32,6 @@ button{
     background: #1976d2;
     border-radius: 10px;
     border: none;
+    width: 300px;
+    height: 30px;
 }
