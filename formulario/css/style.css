@@ -16,3 +16,7 @@ h1{
     display: flex;
     justify-content: center;
 }
+
+label{
+    display: block;
+}
