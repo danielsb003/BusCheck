@@ -8,6 +8,8 @@ body {
 .container {
     background: gray;
     border-radius: 10px;
+    width: 350px;
+    height: 300px;
 }
 
 h1{
