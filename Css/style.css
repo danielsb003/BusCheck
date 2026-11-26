@@ -105,6 +105,7 @@ main { max-width: 800px; margin: 30px auto; padding: 0 20px; }
     nav.nav a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 }
 
+
 .footer {
   background: white;
   border-top: 1px solid #ddd;
@@ -131,6 +132,15 @@ main { max-width: 800px; margin: 30px auto; padding: 0 20px; }
 }
 
 .footer-col a {
+  display: inline-block;
   text-decoration: none;
   color: #222;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: #1976d2;
+  border-bottom-color: #1976d2;
 }
