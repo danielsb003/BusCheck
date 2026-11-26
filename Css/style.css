@@ -119,3 +119,18 @@ main { max-width: 800px; margin: 30px auto; padding: 0 20px; }
 .footer .logo span {
   color: #1976d2;
 }
+.footer-grid {
+  display: flex;
+  gap: 40px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.footer-col a {
+  text-decoration: none;
+  color: #222;
+}
