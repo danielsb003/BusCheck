@@ -1,0 +1,40 @@
+body {
+    background: rgb(211, 201, 201);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    border-radius: 10px;
+    width: 350px;
+    height: 300px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+label{
+    display: block;
+    margin-left: 20px;
+}
+
+input{
+    margin-left: 20px;
+}
+
+button{
+    margin-top: 40px;
+    margin-left: 20px;
+    background: #1976d2;
+    border-radius: 10px;
+    border: none;
+    width: 300px;
+    height: 30px;
+    color: white;
+}
