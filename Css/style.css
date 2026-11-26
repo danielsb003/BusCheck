@@ -104,3 +104,18 @@ main { max-width: 800px; margin: 30px auto; padding: 0 20px; }
     /* Esconde o texto, mas mantém-no disponível para leitores de ecrã */
     nav.nav a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 }
+
+.footer {
+  background: white;
+  border-top: 1px solid #ddd;
+  padding: 25px 4%;
+}
+
+.footer .logo {
+  font-size: 26px;
+  color: #222;
+}
+
+.footer .logo span {
+  color: #1976d2;
+}
